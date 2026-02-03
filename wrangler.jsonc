@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "horoscope-be",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-02-03",
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "99417ee49c9a42f88239191f4d5a8ee9",
+    },
+  ],
+  "triggers": {
+    "crons": ["0 0 * * *"],
+  },
+}
