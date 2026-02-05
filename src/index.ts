@@ -144,7 +144,7 @@ async function cronJob(env: CloudflareBindings) {
   );
 
   const result = await generateText({
-    model: google("gemini-2.5-pro"),
+    model: google("gemini-2.5-flash"),
     output: Output.object({
       schema: horoscopeSchema,
     }),
