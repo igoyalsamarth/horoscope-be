@@ -186,7 +186,7 @@ export default {
     env: CloudflareBindings,
     ctx: ExecutionContext,
   ) {
-    if (controller.cron === "*/10 * * * *") {
+    if (controller.cron === "0 0 * * *") {
       ctx.waitUntil(cronJob(env));
     }
   },
