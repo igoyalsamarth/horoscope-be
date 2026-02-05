@@ -28,21 +28,42 @@ async function cronJob(env: CloudflareBindings) {
     apiKey: env.GOOGLE_GENERATIVE_AI_API_KEY,
   });
 
-  const astroJson = await fetch(
-    `https://json.freeastrologyapi.com/western/planets`,
-    {
-      headers: {
-        "x-api-key": env.ASTRO_API_KEY,
-      },
-    },
-  );
-
   const today = new Date();
 
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const dayOfMonth = today.getDate();
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const seconds = today.getSeconds();
   const dayOfWeekIndex = today.getDay();
+
+  const astroJson = await fetch(
+    `https://json.freeastrologyapi.com/western/planets`,
+    {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ASTRO_API_KEY,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        year: year,
+        month: month,
+        date: dayOfMonth,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds,
+        latitude: 17.38405,
+        longitude: 78.45636,
+        timezone: 5.5,
+        config: {
+          observation_point: "topocentric",
+          ayanamsha: "tropical",
+          language: "en",
+        },
+      }),
+    },
+  );
 
   const daysList = [
     "Sunday",
